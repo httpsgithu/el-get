@@ -137,7 +137,7 @@
                      (read-from-string (buffer-string))))
             ;; If it doesn't exist, make sure the directory is there
             ;; so we can create it.
-            (make-directory el-get-dir t)))
+            (progn (make-directory el-get-dir t) nil)))
          (p-s
           (cond
            ((null ps) ;; nothing installed, we should install el-get
@@ -331,7 +331,8 @@ REMOVED are added and removed properties, respectively."
 (defun el-get-merge-properties-into-status (package-or-source
                                             operation
                                             &rest keys)
-  "Merge updatable properties for package into package status alist (or status file).
+  "Merge updatable properties for package into package status
+alist (or status file).
 
 The first argument is either a package source or a package name,
 in which case the source will be read using
